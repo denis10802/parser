@@ -233,7 +233,7 @@ return [
 
         [
             'text'        => 'Парсер',
-            'url'         => 'home',
+            'url'         => '/',
             'icon'        => 'nav-icon fas fa-tachometer-alt',
         ],
 
