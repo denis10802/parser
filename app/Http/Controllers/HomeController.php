@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\ParseDataClient;
+
 class HomeController extends Controller
 {
 
@@ -12,7 +14,7 @@ class HomeController extends Controller
     }
 
 
-    public function showData(ParseController $parseContent)
+    public function showData(ParseDataClient $parseContent)
     {
 
         $data = $parseContent->parseData();
