@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//TODO : Добавить маршрут для получения списка новостей в формате json
+
+Route::get('/json_data',[\App\Http\Controllers\Api\NoticesController::class,'showTitle']);
+
 
 Auth::routes();
 
