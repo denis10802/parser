@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Components\ParseDataClient;
+use App\Models\Notice;
 
 class HomeController extends Controller
 {
@@ -13,14 +13,18 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-
-    public function showData(ParseDataClient $parseContent)
+    public function showData()
     {
+        //   вывод данных из бд на админку
+        $notices = Notice::all();
 
-        $data = $parseContent->parseData();
+        return view('admin/index', [
+            'notices' => $notices,
 
-        return view('admin/index',[
-            'data'=> $data
         ]);
     }
+
+
+
+
 }
