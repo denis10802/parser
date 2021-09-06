@@ -8,13 +8,16 @@ use Illuminate\Console\Command;
 class ImportParseDataCommand extends Command
 {
 
-    protected $signature = 'import:feednotice';
+    protected $signature = 'gettable:feednotice';
 
     protected $description = 'Get data from bashInform';
 
     public function handle(ParseDataClient $parseContent)
     {
-        dd($parseContent->parseData());
+        $this->table(
+            ['Title', 'Link'],
+            $parseContent->parseData()
+        );
     }
 
 }
