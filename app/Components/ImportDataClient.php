@@ -17,13 +17,14 @@ class ImportDataClient
     public function __construct()
     {
         try {
-            $this->client = new Client([
-                'base_uri' => 'https://feeds.feedburner.com/',
-                'timeout'  => 2.0,
-                'verify'=>false,
-            ]);
-        }catch (TransferException $exception){
-            echo Message::toString($exception->getMessage());
+            $this->client = new Client(
+                [
+                    'base_uri' => 'https://feeds.feedburner.com/',
+                    'timeout'  => 2.0,
+                    'verify'=>false,
+                ]);
+        } catch (TransferException $exception) {
+            echo Message::toString(message: $exception->getMessage());
         }
     }
 
@@ -32,7 +33,7 @@ class ImportDataClient
     {
         $import =  new ImportDataClient();
         $import = $import->client->get('bashinform/all');
-        return $content = $import->getBody()->getContents();
+        return $import->getBody()->getContents();
     }
 
 
