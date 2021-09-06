@@ -3,7 +3,6 @@
 
 namespace App\Components;
 
-
 use Symfony\Component\DomCrawler\Crawler;
 
 class ParseDataClient
@@ -18,18 +17,19 @@ class ParseDataClient
         $this->crawler = new Crawler($content);
     }
 
-    public function parseData()
+    public function parseData(): array
     {
-        $textContent =  $this->crawler->filterXPath('//channel//item//title');
-
-        $data = [];
-
-        foreach ($textContent as $domElement) {
-            $data[] = $domElement->textContent;
-        }
-        return $data;
-
+        return $this->crawler->filterXPath('//channel//item')->each(function (
+            Crawler $parentCrawler,
+            $i
+        ) {
+            $title = $parentCrawler->filterXPath('//title');
+            $link = $parentCrawler->filterXPath('//link');
+            return [
+                'title' => $title->text(),
+                'link'=> $link->text()
+            ];
+        });
     }
-
 
 }
