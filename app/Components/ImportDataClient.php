@@ -3,37 +3,25 @@
 
 namespace App\Components;
 
-
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\Psr7\Message;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Response;
 
 class ImportDataClient
 {
 
-    public  Client $client;
-
+    public Response $client;
 
     public function __construct()
     {
-        try {
-            $this->client = new Client(
-                [
-                    'base_uri' => 'https://feeds.feedburner.com/',
-                    'timeout'  => 2.0,
-                    'verify'=>false,
-                ]);
-        } catch (TransferException $exception) {
-            echo Message::toString(message: $exception->getMessage());
-        }
+      $this->client = Http::get(config('app.client_uri'));
     }
 
 
-    public function importData()
+
+    public function importData(): string
     {
         $import =  new ImportDataClient();
-        $import = $import->client->get('bashinform/all');
-        return $import->getBody()->getContents();
+        return $import->client->body();
     }
 
 
