@@ -2,7 +2,9 @@
 
 namespace App\Components;
 
+use App\Events\EventParseProcessing;
 use App\Models\Notice;
+use Illuminate\Support\Facades\Log;
 
 class UpdateModelComponent
 {
@@ -20,6 +22,7 @@ class UpdateModelComponent
                 'link'=>$datum['link']
                ]);
         }
+        EventParseProcessing::dispatch($parseData);
     }
 
 }
