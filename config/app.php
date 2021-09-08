@@ -2,6 +2,11 @@
 
 return [
 
+
+    'client_uri'=>env('CLIENT_URI'),
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -230,5 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+
 
 ];
