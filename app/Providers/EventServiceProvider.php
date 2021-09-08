@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\EventParseProcessing;
+use App\Listeners\LoggingListener;
+use App\Listeners\MailTrapListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -15,13 +18,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+       EventParseProcessing::class => [
+            LoggingListener::class,
+            MailTrapListener::class
         ],
     ];
 
+
     /**
-     * Register any events for your application.
+     * Register any events for your application.php artisan make:listener SendPodcastNotification --event=PodcastProcessed
      *
      * @return void
      */
