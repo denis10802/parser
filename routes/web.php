@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Models\Notice;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\NoticeResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/json_data',[\App\Http\Controllers\Api\NoticesController::class,'showTitle']);
+Route::get('/responses',function (){
+    return NoticeResource::collection(Notice::all());
+});
 
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'showData']);
+Route::get('/', [HomeController::class, 'index']);
 
