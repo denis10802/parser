@@ -9,9 +9,9 @@
 </head>
 <body>
 
-@foreach($contents as $content)
+@foreach($headlines as $headline)
     <ul>
-        <li>{{$content}}</li>
+        <li>{{$headline}}</li>
     </ul>
 @endforeach
 
