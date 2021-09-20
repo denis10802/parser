@@ -3,12 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\NoticesParsed;
-use App\Jobs\Logging;
 use App\Jobs\MailSend;
-use App\Mail\NotifyAboutNotices;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Mail;
 
 class SendingToMail
 {
