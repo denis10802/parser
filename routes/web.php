@@ -23,5 +23,5 @@ Route::get('/responses',function (){
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'showData']);
 
