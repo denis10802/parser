@@ -17,7 +17,7 @@ class FeedContentParser
         $this->crawler = new Crawler($content);
     }
 
-    public final function getNotices(): array
+    public function getNotices(): array
     {
         return $this->crawler->filterXPath('//channel//item')->each(function (
             Crawler $parentCrawler,
