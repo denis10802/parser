@@ -19,10 +19,7 @@ class LoggingNotices
     public function handle(NoticesParsed $event)
     {
         $notices = $event->notices;
-        $headlines = [];
-        foreach ($notices as $notice){
-            $headlines[] = $notice['title'];
-        }
-        Logging::dispatch($headlines);
+        $titles = array_column($notices,'title');
+        Logging::dispatch($titles);
     }
 }
