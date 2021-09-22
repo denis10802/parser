@@ -2,37 +2,34 @@
 
 namespace Tests\Feature;
 
-use App\Components\FeedRead;
-<<<<<<< HEAD
-use App\Components\ParseNoticeDTO;
-=======
->>>>>>> ce3c89dd729c0be978e4fbb6a21e8f1040706feb
-use App\Components\RequestHttpClient;
+use App\Components\FeedReadComponent;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
+
 
 class FeedReadTest extends TestCase
 {
-    public function test_reader()
+    public function test_checksSendingRequests()
     {
-        $xml ='<channel><item>\r\n
-                <title>В учреждениях культуры Башкирии усилены ограничительные меры в связи с COVID-19</title>\r\n
-                <link>https://www.bashinform.ru/news/1648622-ranichitelnye-mery-v-svyazi-s-covid-19/</link>\r\n
-                </item>\r\n
-                </channel>
-                ';
-        $mockClient = $this->createMock(RequestHttpClient::class);
-        $mockClient->expects($this->exactly(1))->method('get_body')->willReturn($xml);
-        $inst = new FeedRead($mockClient);
-        /** @var ParsedNoticeDTO[] **/
-        $reader = $inst->read();
-<<<<<<< HEAD
-        
-=======
->>>>>>> ce3c89dd729c0be978e4fbb6a21e8f1040706feb
+        $xml = "<channel>
+                <item><title>В учреждениях культуры Башкирии </title>
+                <link>https://www.rietdbk.plde0fo</link></item>
+                </channel>";
 
-        dd($reader);
+        Http::fake(function () use ($xml){
+            return Http::response($xml);
+        });
+
+        $instance = new FeedReadComponent();
+        $response = $instance->read();
+
+        $this->assertObjectHasAttribute('title', $response[0]);
+        $this->assertSame($response[0]->title,'В учреждениях культуры Башкирии');
+        Http::assertSent(function (Request $request){
+         return $request->url() === config('app.feeds_url');
+        });
     }
-
 }
