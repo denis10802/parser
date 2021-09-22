@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GetApiResponsesController;
 use App\Http\Controllers\HomeController;
 use App\Models\Notice;
 use Illuminate\Support\Facades\Route;
@@ -16,12 +17,13 @@ use App\Http\Resources\NoticeResource;
 |
 */
 
-Route::get('/responses',function (){
-    return NoticeResource::collection(Notice::all());
+Route::prefix('api')->group(function (){
+    Route::get('/title',[GetApiResponsesController::class,'get_title']);
 });
+
 
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'showData']);
+Route::get('/', [HomeController::class, 'index']);
 
