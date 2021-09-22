@@ -6,14 +6,13 @@ namespace App\Components;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
-class FeedRead
+final class FeedReadComponent
 {
     private function get_body(): string
     {
         $response = Http::get(config('app.feeds_url'));
         return $response->body();
     }
-
     /**
      * @return ParseNoticeDTO[]
      */
