@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Components\ParseNoticeDTO;
 use App\Mail\NotifyAboutNotices;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -15,6 +16,7 @@ class MailSend implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /** @var ParseNoticeDTO[] */
     protected array $headlines;
 
     /**

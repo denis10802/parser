@@ -16,10 +16,7 @@ class SendingToMail
     public function handle(NoticesParsed $event)
     {
         $notices = $event->notices;
-        $headlines = [];
-        foreach ($notices as $notice){
-            $headlines[] = $notice['title'];
-        }
-        MailSend::dispatch($headlines);
+        $titles = array_column($notices,'title');
+        MailSend::dispatch($titles);
     }
 }
