@@ -3,7 +3,10 @@
 namespace Tests\Feature;
 
 use App\Components\FeedRead;
+<<<<<<< HEAD
 use App\Components\ParseNoticeDTO;
+=======
+>>>>>>> ce3c89dd729c0be978e4fbb6a21e8f1040706feb
 use App\Components\RequestHttpClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -24,7 +27,10 @@ class FeedReadTest extends TestCase
         $inst = new FeedRead($mockClient);
         /** @var ParsedNoticeDTO[] **/
         $reader = $inst->read();
+<<<<<<< HEAD
         
+=======
+>>>>>>> ce3c89dd729c0be978e4fbb6a21e8f1040706feb
 
         dd($reader);
     }
