@@ -9,7 +9,7 @@
 @section('content')
     @can('can_parse_notices')
         <div class="p-4">
-            <x-adminlte-button label="Обновить новости" theme="success" icon="fas fa-thumbs-up"/>
+            <a href="{{route('update')}}" class="btn btn-success">Обновить новости</a>
         </div>
     @endcan
 
