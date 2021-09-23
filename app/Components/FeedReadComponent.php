@@ -5,7 +5,7 @@ namespace App\Components;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
-final class FeedReadComponent
+class FeedReadComponent
 {
     private function getBody(): string
     {
