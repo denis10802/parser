@@ -2,13 +2,12 @@
 
 namespace App\Components;
 
-
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
 final class FeedReadComponent
 {
-    private function get_body(): string
+    private function getBody(): string
     {
         $response = Http::get(config('app.feeds_url'));
         return $response->body();
@@ -18,7 +17,7 @@ final class FeedReadComponent
      */
     public function read(): array
     {
-        $crawler = new Crawler($this->get_body());
+        $crawler = new Crawler($this->getBody());
         return $crawler->filterXPath('//channel//item')->each(function (
             Crawler $parentCrawler,
                     $i

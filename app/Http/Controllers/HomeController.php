@@ -13,14 +13,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function showData()
+    public function index()
     {
-        //   вывод данных из бд на админку
         $notices = Notice::all();
-
         return view('admin/index', [
-            'notices' => $notices,
-
+            'notices' => $notices
         ]);
     }
 
