@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Notice;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -10,16 +11,25 @@ final class UserTest extends TestCase
     /**
      * @test
      */
-    public function redirectUserOnAuthTest()
+    public function redirectUserOnAuth()
     {
         $response = $this->get('/');
         $response->assertStatus(302)->assertRedirect('login');
     }
 
+    /**
+     * @test
+     */
     public function authUserTest()
     {
+        Notice::factory()->create([
+            'title'=>'делать утверждения в отношении определенной части данных',
+            'link'=>'https//hhhgnhi.kkjghg.kkkkk'
+        ]);
+
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/');
         $response->assertStatus(200);
+        $response->assertSeeText('делать утверждения');
     }
 }
