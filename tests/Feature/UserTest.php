@@ -22,13 +22,15 @@ final class UserTest extends TestCase
      */
     public function authUserTest()
     {
+        //arrange
         Notice::factory()->create([
             'title'=>'делать утверждения в отношении определенной части данных',
             'link'=>'https//hhhgnhi.kkjghg.kkkkk'
         ]);
-
         $user = User::factory()->create();
+        //act
         $response = $this->actingAs($user)->get('/');
+        //assert
         $response->assertStatus(200);
         $response->assertSeeText('делать утверждения');
     }
