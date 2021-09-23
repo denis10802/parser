@@ -7,6 +7,13 @@
 @stop
 
 @section('content')
+    @can('can_parse_notices')
+        <div class="p-4">
+            <x-adminlte-button label="Обновить новости" theme="success" icon="fas fa-thumbs-up"/>
+        </div>
+    @endcan
+
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
