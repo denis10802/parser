@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Components\ParseNoticeDTO;
 use App\Mail\NotifyAboutNotices;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -16,17 +15,17 @@ class MailSend implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /** @var ParseNoticeDTO[] */
-    protected array $headlines;
+
+    protected array $titles;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(array $headlines)
+    public function __construct(array $titles)
     {
-        $this->headlines = $headlines;
+        $this->titles = $titles;
     }
     /**
      * Execute the job.
@@ -35,6 +34,6 @@ class MailSend implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(config('mail.from.address'))->send(new NotifyAboutNotices($this->headlines));
+        Mail::to(config('mail.from.address'))->send(new NotifyAboutNotices($this->titles));
     }
 }

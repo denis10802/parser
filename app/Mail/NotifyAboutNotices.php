@@ -11,16 +11,16 @@ class NotifyAboutNotices extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected array $headlines;
+    protected array $titles;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(array $headlines)
+    public function __construct(array $titles)
     {
-        $this->headlines = $headlines;
+        $this->titles = $titles;
     }
 
     /**
@@ -31,7 +31,7 @@ class NotifyAboutNotices extends Mailable
     public function build(): static
     {
         return $this->view('admin.mail')->with([
-            'headlines'=>$this->headlines
+            'titles'=>$this->titles
         ]);
     }
 }

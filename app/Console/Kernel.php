@@ -2,7 +2,9 @@
 
 namespace App\Console;
 
-use App\Components\NoticeModelUpdate;
+
+use App\Components\OverwriteNotice;
+use App\Http\Controllers\RefreshNoticesCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -22,7 +24,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new NoticeModelUpdate())->everyMinute();
+        $schedule->job(new RefreshNoticesCommand())->everyMinute();
     }
 
 
