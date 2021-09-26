@@ -28,5 +28,5 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/update',[NoticeUpdateController::class,'update'])->name('update');
+Route::post('/update',[NoticeUpdateController::class,'update'])->name('update');
 
