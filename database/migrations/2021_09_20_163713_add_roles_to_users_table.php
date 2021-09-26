@@ -14,7 +14,7 @@ class AddRolesToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('roles')->after('id')->nullable();
+            $table->string('role')->after('id')->nullable();
         });
     }
 
@@ -25,8 +25,6 @@ class AddRolesToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('users');
     }
 }

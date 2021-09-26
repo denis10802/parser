@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('can_parse_notices', function (User $user){
-            return $user->roles === 'admin';
+            return $user->role === 'admin';
         });
     }
 }
