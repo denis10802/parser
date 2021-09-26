@@ -14,12 +14,17 @@ class NoticeResourceTest extends TestCase
      */
     public function test_json_response()
     {
+        // Arrange
         $arrayToEntry= [
                 ["title" => 'Радий Хабиров параолимпийцам']
         ];
         Notice::factory()->create($arrayToEntry[0]);
+
+        // Act
         $response = $this->getJson('/api/title');
         $arrayEncode = $response->json();
+
+        // Assert
         $response->assertExactJson($arrayToEntry);
         $this->assertSame($arrayToEntry, $arrayEncode);
     }

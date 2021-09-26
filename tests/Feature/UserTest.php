@@ -11,7 +11,7 @@ final class UserTest extends TestCase
     /**
      * @test
      */
-    public function redirectUserOnAuth()
+    public function test_redirect_user_on_auth()
     {
         $response = $this->get('/');
         $response->assertStatus(302)->assertRedirect('login');
@@ -20,18 +20,18 @@ final class UserTest extends TestCase
     /**
      * @test
      */
-    public function authUserTest()
+    public function test_auth_user()
     {
-        //arrange
-        Notice::factory()->create([
-            'title'=>'делать утверждения в отношении определенной части данных',
-            'link'=>'https//hhhgnhi.kkjghg.kkkkk'
-        ]);
+        // Arrange
+        $title = 'делать утверждения в отношении определенной части данных';
+        Notice::factory()->create(['title'=>$title]);
         $user = User::factory()->create();
-        //act
+
+        // Act
         $response = $this->actingAs($user)->get('/');
-        //assert
+
+        // Assert
         $response->assertStatus(200);
-        $response->assertSeeText('делать утверждения');
+        $response->assertSeeText($title);
     }
 }

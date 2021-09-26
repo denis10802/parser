@@ -12,9 +12,9 @@ use Tests\TestCase;
 
 class FeedReadTest extends TestCase
 {
-    public function test_checksSendingRequests()
+    public function test_checks_sending_requests()
     {
-        //arrange
+        // Arrange
         $xml = "<channel>
                 <item><title>В учреждениях культуры Башкирии </title>
                 <link>https://www.rietdbk.plde0fo</link></item>
@@ -22,10 +22,12 @@ class FeedReadTest extends TestCase
         Http::fake(function () use ($xml){
             return Http::response($xml);
         });
-        //act
+
+        // Act
         $instance = new FeedReadComponent();
         $response = $instance->read();
-        //assert
+
+        // Assert
         $this->assertObjectHasAttribute('title', $response[0]);
         $this->assertSame($response[0]->title,'В учреждениях культуры Башкирии');
         Http::assertSent(function (Request $request){
