@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Components;
+namespace App\Components\Services;
 
+use App\Components\ParseNoticeDTO;
+use App\Contracts\IFeedRead;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
-class FeedReadComponent
+class FeedReadBashinform implements IFeedRead
 {
     private function getBody(): string
     {
-        $response = Http::get(config('app.feeds_url'));
+        $response = Http::get(config('app.feeds_url_bashinform'));
         return $response->body();
     }
     /**

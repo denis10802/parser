@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'feeds_url' => env('CLIENT_URI'),
+    'feeds_url_bashinform' => env('CLIENT_URI_BASHINFORM'),
+
+    'feeds_url_habr' => env('CLIENT_URI_HABR'),
 
     /*
     |--------------------------------------------------------------------------
