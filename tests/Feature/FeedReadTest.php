@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Components\FeedReadComponent;
+use App\Components\Services\FeedReadBashinform;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\Request;
@@ -24,14 +24,14 @@ class FeedReadTest extends TestCase
         });
 
         // Act
-        $instance = new FeedReadComponent();
+        $instance = new FeedReadBashinform();
         $response = $instance->read();
 
         // Assert
         $this->assertObjectHasAttribute('title', $response[0]);
         $this->assertSame($response[0]->title,'В учреждениях культуры Башкирии');
         Http::assertSent(function (Request $request){
-         return $request->url() === config('app.feeds_url');
+         return $request->url() === config('app.feeds_url_bashinform');
         });
     }
 }

@@ -20,8 +20,4 @@ class HomeController extends Controller
             'notices' => $notices
         ]);
     }
-
-
-
-
 }
