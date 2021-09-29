@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Components\FeedReadComponent;
+use App\Components\Services\FeedReadBashinform;
 use App\Components\NoticeRefreshComponent;
 use App\Components\ParseNoticeDTO;
+use App\Components\Services\FeedReedHabr;
+use App\Contracts\IFeedRead;
 use App\Events\NoticesParsed;
 use App\Http\Controllers\RefreshNoticesCommand;
 use App\Jobs\Logging;
@@ -28,7 +30,11 @@ class EventNoticesTest extends TestCase
             new ParseNoticeDTO('ВТБ и ДОМ.РФ запускают первую','https://www.bashinform.ru/news/1645581-ipoteku/')
         ];
 
-        $this->mock = $this->createMock(FeedReadComponent::class);
+        app()->bind(IFeedRead::class, function () {
+           return new FeedReedHabr();
+        });
+
+        $this->mock = $this->createMock(IFeedRead::class);
         $this->mock->expects($this->exactly(1))->method('read')->willReturn($arrayToEntry);
     }
 
