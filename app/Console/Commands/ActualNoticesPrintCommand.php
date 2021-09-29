@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Components\FeedReadComponent;
 use App\Components\ParseNoticeDTO;
+use App\Components\Services\FeedReadBashinform;
+use App\Contracts\IFeedRead;
 use Illuminate\Console\Command;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -19,7 +20,7 @@ class ActualNoticesPrintCommand extends Command
     /**
      * @throws ExceptionInterface
      */
-    public function handle(FeedReadComponent $read)
+    public function handle(IFeedRead $read)
     {
         $normalizers = [new ObjectNormalizer()];
 
